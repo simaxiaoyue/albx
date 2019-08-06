@@ -1,6 +1,7 @@
 const express=require('express');
 const pagesController=require('./controllers/pagesController');
 const userController=require('./controllers/userController');
+const postController=require('./controllers/postController');
 const router=express.Router();
 // 后台页面
 router.get('/admin',pagesController.getAdminIndexPage)
@@ -17,11 +18,7 @@ router.get('/admin',pagesController.getAdminIndexPage)
 .get('/admin/login',pagesController.getAdminLoginPage)
 
 .post('/login',userController.login)
-
-
-
-
-
+.get('/getAllPost',postController.getAllPost)
 
   // 前台页面
 .get('/',pagesController.getIndexPage)
