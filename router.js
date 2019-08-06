@@ -14,7 +14,9 @@ router.get('/admin',pagesController.getAdminIndexPage)
 .get('/admin/settings',pagesController.getAdminSettingsPage)
 .get('/admin/slides',pagesController.getAdminSlidesPage)
 .get('/admin/users',pagesController.getAdminUsersPage)
+.get('/admin/login',pagesController.getAdminLoginPage)
 
+.post('/login',userController.login)
 
 
 
