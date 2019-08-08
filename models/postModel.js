@@ -1,11 +1,18 @@
 const conn = require('../utils/myconn');
 
 exports.getAllPost = (obj, callback) => {
-  let sql = `select posts.*,users.nickname,categories.name
+  var sql = `select posts.*,users.nickname,categories.name
              from posts 
              join users on posts.user_id = users.id
              join categories on posts.category_id = categories.id
-             limit ${(obj.pageNum - 1) * obj.pageSize},${obj.pageSize}`;
+             where 1=1`
+  if (obj.cate && obj.cate != 'all') {
+    sql += ` and category_id='${obj.cate}'`
+  }
+  if (obj.status && obj.status != 'all') {
+    sql += ` and posts.status='${obj.status}'`
+  }
+  sql +=` limit ${(obj.pageNum - 1) * obj.pageSize},${obj.pageSize}`;
   conn.query(sql, (err, result) => {
     if (err) {
       callback(err);
@@ -24,4 +31,4 @@ exports.getAllPost = (obj, callback) => {
       })
     }
   })
-  }
+}
